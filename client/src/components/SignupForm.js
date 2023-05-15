@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
-import { createUser } from "../utils/API";
 import Auth from "../utils/auth";
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_USER } from "../utils/mutations";
 
 const SignupForm = () => {
   // set initial form state
@@ -20,6 +21,8 @@ const SignupForm = () => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+
+  const [createUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
